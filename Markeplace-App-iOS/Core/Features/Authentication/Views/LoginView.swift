@@ -28,6 +28,10 @@ struct LoginView: View {
                     placeholder: "Enter your password",
                     text: $password
                 )
+                
+                AppButton(title: "Sign In") {
+                    print("Sign In tapped")
+                }
 
                 NavigationLink {
                     RegistrationView()

@@ -1,9 +1,13 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @Environment(\.dismiss) private var dismiss
+
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    @State private var passwordsMatch = false
+    @State private var isLoading = false
 
     var body: some View {
         NavigationStack {
@@ -23,15 +27,45 @@ struct RegistrationView: View {
                     text: $email
                 )
 
-                AppSecureField(
-                    placeholder: "Enter your password",
-                    text: $password
-                )
+                ZStack(alignment: .trailing) {
+                    AppSecureField(
+                        placeholder: "Enter your password",
+                        text: $password
+                    )
+
+                    if !password.isEmpty && !confirmPassword.isEmpty {
+                        Image(
+                            systemName: passwordsMatch
+                                ? "checkmark.circle.fill" : "xmark.circle.fill"
+                        )
+                        .foregroundStyle(passwordsMatch ? .green : .red)
+                        .padding(.horizontal)
+                    }
+                }
+
+                ZStack(alignment: .trailing) {
+                    AppSecureField(
+                        placeholder: "Confirm your password",
+                        text: $confirmPassword
+                    )
+
+                    if !password.isEmpty && !confirmPassword.isEmpty {
+                        Image(
+                            systemName: passwordsMatch
+                                ? "checkmark.circle.fill" : "xmark.circle.fill"
+                        )
+                        .foregroundStyle(passwordsMatch ? .green : .red)
+                        .padding(.horizontal)
+                    }
+                }
+                .onChange(of: confirmPassword) {oldValue, newValue in
+                    passwordsMatch = newValue == password
+                    
+                }
                 
-                AppSecureField(
-                    placeholder: "Confirm your password",
-                    text: $password
-                )
+                AppButton(title: "Sign Up") {
+                    print("Sign Up tapped")
+                }
 
                 NavigationLink {
                     LoginView()
