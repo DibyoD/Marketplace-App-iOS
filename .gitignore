@@ -44,3 +44,16 @@ Carthage/Build/
 !.env.example
 Secrets.swift
 EOF
+
+# Xcode user-specific data
+**/xcuserdata/
+*.xcuserstate
+
+# Xcode build files
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
