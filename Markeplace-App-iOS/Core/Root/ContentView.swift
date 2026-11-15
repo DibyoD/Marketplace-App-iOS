@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  Markeplace-App-iOS
-//
-//  Created by Dibyo Dhara on 15/11/26.
-//
 
 import SwiftUI
 
@@ -22,3 +16,4 @@ struct ContentView: View {
 //#Preview {
 //    ContentView()
 //}
+  
